@@ -1,0 +1,36 @@
+{
+  "name": "rpgmv-base",
+  "version": "1.0.0",
+  "description": "A base project for rpgmaker mv done by me",
+  "scripts": {
+    "deploy": "./deploy -p dist",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentaromiura/RPGMV-BASE.git"
+  },
+  "keywords": [
+    "RPGMaker",
+    "MV"
+  ],
+  "author": "Cristian Carlesso <@kentaromiura>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentaromiura/RPGMV-BASE/issues"
+  },
+  "devDependencies" : {
+    "clint": "*",
+    "glob": "*",
+    "wrapup": "*",  
+    "babel-jest": "*",
+    "babel-polyfill": "*",
+    "babel-preset-es2015": "*",
+    "jest-cli": "*"
+ },
+ "jest": {
+   "automock": false,
+   "testEnvironment": "node"
+  },
+  "homepage": "https://github.com/kentaromiura/RPGMV-BASE#readme"
+}
