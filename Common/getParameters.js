@@ -1,5 +1,3 @@
-var getCurrentFileName = require('./getCurrentFileName')
+import getCurrentFileName from './getCurrentFileName'
 
-module.exports = () => {
-  return PluginManager.parameters(getCurrentFileName())
-}
+export default () => PluginManager.parameters(getCurrentFileName())

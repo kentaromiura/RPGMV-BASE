@@ -4,7 +4,8 @@
   "description": "A base project for rpgmaker mv done by me",
   "scripts": {
     "deploy": "./deploy -p dist",
-    "test": "jest"
+    "test": "jest",
+    "lint": "yarn prettier -- --single-quote --no-semi --trailing-comma es5 --tab-width 2 --write $(node -p \"(function readDirR(dir){return fs.statSync(dir).isDirectory()? Array.prototype.concat(...fs.readdirSync(dir).map(f => readDirR(path.join(dir, f))).filter(x => Array.isArray(x) || (x.endsWith('.js') && x.indexOf('node_modules')) )) : dir})('.').join(' ')\")"
   },
   "repository": {
     "type": "git",
@@ -19,18 +20,21 @@
   "bugs": {
     "url": "https://github.com/kentaromiura/RPGMV-BASE/issues"
   },
-  "devDependencies" : {
-    "clint": "*",
-    "glob": "*",
-    "wrapup": "*",  
+  "devDependencies": {
     "babel-jest": "*",
     "babel-polyfill": "*",
     "babel-preset-es2015": "*",
-    "jest-cli": "*"
- },
- "jest": {
-   "automock": false,
-   "testEnvironment": "node"
+    "babel-preset-es2016": "*",
+    "babel-preset-es2017": "*",
+    "clint": "*",
+    "glob": "*",
+    "jest-cli": "*",
+    "prettier": "^1.5.2",
+    "wrapup": "*"
+  },
+  "jest": {
+    "automock": false,
+    "testEnvironment": "node"
   },
   "homepage": "https://github.com/kentaromiura/RPGMV-BASE#readme"
 }
