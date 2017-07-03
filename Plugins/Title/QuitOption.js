@@ -6,21 +6,23 @@
  * @default Quit
  */
 'use strict'
-const getParameters = require('../../Common/getParameters'),
-    slice = require('../../Common/slice'),
-    parameters = getParameters(),
-    quitOption = parameters.quitOption || 'Quit'
 
-require('../../Common/Events/Title/commandWindowCreated')()
-global.addEventListener('commandWindowCreated', (event) => {
+import getParameters from '../../Common/getParameters'
+import slice from '../../Common/slice'
+import commandWindowCreated from '../../Common/Events/Title/commandWindowCreated'
+import commandListMade from '../../Common/Events/Title/commandListMade'
+
+const parameters = getParameters(),
+  quitOption = parameters.quitOption || 'Quit'
+
+commandWindowCreated.listen(event => {
   const win = event.detail.context
   win._commandWindow.setHandler('Exit', () => {
     global.close()
   })
 })
 
-require('../../Common/Events/Title/commandListMade')()
-global.addEventListener('commandListMade', (event) => {
+commandListMade.listen(event => {
   const menu = event.detail.context
   menu.addCommand(quitOption, 'Exit')
 })
