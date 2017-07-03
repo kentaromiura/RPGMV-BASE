@@ -7,12 +7,18 @@ const clint = require('clint')(),
   es2015Preset = require('babel-preset-es2015')
 
 let output
+let debug = false
 
 clint.command('--path', '-p', 'path to the project folder')
+clint.command('--debug', '-d', 'deploy in debug mode')
+
 clint.on('command', function(name, value) {
   switch (name) {
     case '--path':
       output = value
+      break
+    case '--debug':
+      debug = true
       break
   }
 })
@@ -31,7 +37,7 @@ clint.on('complete', function() {
       var source = '' + fs.readFileSync(path)
 
       var wrap = new wrapup({
-        compress: true,
+        compress: !debug,
         transforms: [
           {
             src: function(module, callback) {
@@ -48,7 +54,10 @@ clint.on('complete', function() {
       })
       wrap.require(path)
       wrap.up(function(error, result) {
-        result = 'var __REQUIRE_NW_GUI__ = require("nw.gui");' + result
+        result =
+          'var __REQUIRE_NW_GUI__ = require("nw.gui");' +
+          (debug ? '__REQUIRE_NW_GUI__.Window.get().showDevTools();' : '') +
+          result
         var comment = source.slice(0, source.indexOf('*/'))
         if (config.license) {
           comment = comment + '* ' + config.license + '\n */\n'
